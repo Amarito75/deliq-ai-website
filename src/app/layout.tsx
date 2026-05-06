@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif, Fraunces, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, Instrument_Serif, Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-inter",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-space-grotesk",
   display: "swap",
 });
 
@@ -46,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`${inter.variable} ${instrumentSerif.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
+        className={`${spaceGrotesk.variable} ${instrumentSerif.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
       >
         {children}
       </body>
