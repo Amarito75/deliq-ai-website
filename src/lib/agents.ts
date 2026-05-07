@@ -8,7 +8,6 @@ export type Agent = {
 export type AgentCategory = {
   cat: string;
   label: string;
-  emoji: string;
   color: string;
   agents: Agent[];
 };
@@ -16,14 +15,12 @@ export type AgentCategory = {
 export type FlatAgent = Agent & {
   cat: string;
   catLabel: string;
-  emoji: string;
 };
 
 export const AGENTS_DATA: AgentCategory[] = [
   {
     cat: "communication",
     label: "Communication & Marketing",
-    emoji: "📣",
     color: "#7c5cff",
     agents: [
       { name: "Mails", role: "Rédaction & tri intelligents", desc: "Trie, priorise et rédige tes mails en 1 clic. Ne rate plus jamais une opportunité dans ta boîte qui déborde.", tasks: ["Tri automatique par priorité", "Réponses pré-rédigées dans ton ton", "Détection des leads chauds", "Suivi des relances"] },
@@ -36,7 +33,6 @@ export const AGENTS_DATA: AgentCategory[] = [
   {
     cat: "commercial",
     label: "Commercial & Client",
-    emoji: "💼",
     color: "#7c5cff",
     agents: [
       { name: "Prospection", role: "Trouve & contacte tes leads", desc: "Identifie des prospects qualifiés et les contacte avec des messages qui ne sentent pas le copier-coller.", tasks: ["Scraping de leads ciblés", "Séquences mail multi-touch", "LinkedIn outreach", "Scoring d'intention"] },
@@ -48,7 +44,6 @@ export const AGENTS_DATA: AgentCategory[] = [
   {
     cat: "finance",
     label: "Gestion & Finances",
-    emoji: "💰",
     color: "#7c5cff",
     agents: [
       { name: "Comptabilité", role: "Saisie, justificatifs, clôture", desc: "Photos de tickets, factures fournisseurs, rapprochement bancaire : tout est trié, prêt pour ton expert-comptable.", tasks: ["OCR des justificatifs", "Catégorisation automatique", "Rapprochement bancaire", "Export expert-comptable"] },
@@ -60,7 +55,6 @@ export const AGENTS_DATA: AgentCategory[] = [
   {
     cat: "digital",
     label: "Digital & Technique",
-    emoji: "🌐",
     color: "#7c5cff",
     agents: [
       { name: "Webmaster / SEO", role: "Site optimisé en continu", desc: "Audit ton site, corrige les bugs SEO, propose des améliorations qui rankent.", tasks: ["Audit technique mensuel", "Optimisation des balises", "Suggestions de contenus SEO", "Monitoring de positions"] },
@@ -72,7 +66,6 @@ export const AGENTS_DATA: AgentCategory[] = [
   {
     cat: "productivity",
     label: "Productivité",
-    emoji: "⚡",
     color: "#7c5cff",
     agents: [
       { name: "Agenda", role: "Calendrier qui se gère seul", desc: "Prend tes RDV, déplace, confirme. Adieu les 12 mails pour caler un créneau.", tasks: ["Prise de RDV par mail / SMS", "Détection des conflits", "Rappels automatiques", "Synchro multi-calendriers"] },
@@ -84,7 +77,6 @@ export const AGENTS_DATA: AgentCategory[] = [
   {
     cat: "intelligence",
     label: "Intelligence Marché",
-    emoji: "🔭",
     color: "#7c5cff",
     agents: [
       { name: "Veille sectorielle", role: "Pouls de ton industrie", desc: "Lit la presse, les rapports, les forums spécialisés. Te livre une synthèse hebdo.", tasks: ["Curation multi-sources", "Synthèse hebdomadaire", "Détection de signaux faibles", "Suggestions d'actions"] },

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* DELIQ.AI v2 — Bold editorial, neon dark */
+/* DECLIQ.AI v2 — Bold editorial, neon dark */
 :root {
   --bg: #0b0b0d;
   --bg-soft: #111114;
@@ -480,138 +480,127 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.04em; line-height: 0.92; }
   opacity: 0.4;
 }
 
-/* Filters */
-.filters {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-}
-.filter-chip {
-  padding: 10px 18px;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  font-size: 13px;
-  color: var(--fg-dim);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all .2s ease;
-  background: transparent;
-}
-.filter-chip:hover { border-color: var(--fg-dim); color: var(--fg); }
-.filter-chip.active {
-  background: var(--lime);
-  color: #0b0b0d;
-  border-color: var(--lime);
-  font-weight: 500;
-}
-.filter-chip .count { font-family: var(--mono); font-size: 10px; opacity: 0.6; }
+/* Category icon wrappers (used by Icons.tsx) */
 .cat-ic { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; }
 .cat-ic svg { width: 18px; height: 18px; }
-.filter-chip .cat-ic { color: currentColor; opacity: 0.8; }
-.filter-chip.active .cat-ic { opacity: 1; }
 .agent-ic { display: inline-flex; align-items: center; justify-content: center; }
-.agent-ic svg { width: 22px; height: 22px; }
+.agent-ic svg { width: 18px; height: 18px; }
 .modal-cat .cat-ic { width: 14px; height: 14px; }
 .modal-cat .cat-ic svg { width: 14px; height: 14px; }
 
-/* Agents grid - bento style */
-.agents-grid {
+/* Categories grid */
+.cat-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
-@media (max-width: 1100px) { .agents-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 760px) { .agents-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .agents-grid { grid-template-columns: 1fr; } }
+@media (max-width: 1024px) { .cat-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .cat-grid { grid-template-columns: 1fr; gap: 12px; } }
 
-.agent-card {
+.cat-card {
+  position: relative;
   background: var(--bg-soft);
   border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 24px 22px;
+  border-radius: 24px;
+  padding: 28px 26px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  cursor: pointer;
-  position: relative;
-  text-align: left;
-  min-height: 240px;
-  overflow: hidden;
-  transition: all .3s cubic-bezier(.2,.8,.2,1);
+  gap: 22px;
   isolation: isolate;
+  overflow: hidden;
+  transition: border-color .3s ease, transform .3s ease;
 }
-.agent-card::before {
+.cat-card::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle 200px at var(--mx,50%) var(--my,50%), var(--accent-soft), transparent 70%);
+  background: radial-gradient(circle 280px at var(--mx,50%) var(--my,50%), var(--accent-soft), transparent 70%);
   opacity: 0;
   transition: opacity .3s ease;
   z-index: -1;
+  pointer-events: none;
 }
-.agent-card:hover { border-color: var(--accent); transform: translateY(-4px); }
-.agent-card:hover::before { opacity: 1; }
-.agent-card:hover .agent-arrow { opacity: 1; transform: translate(0,0); color: var(--lime); }
+.cat-card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
+.cat-card:hover::before { opacity: 1; }
 
-.agent-emoji-box {
-  width: 44px; height: 44px;
+.cat-card-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.cat-card-icon {
+  width: 52px; height: 52px;
   display: grid; place-items: center;
   background: var(--bg);
   border: 1px solid var(--line-strong);
-  border-radius: 12px;
-  color: var(--fg);
-  transition: color .25s ease, border-color .25s ease, background .25s ease;
+  border-radius: 14px;
+  color: var(--lime);
+  flex-shrink: 0;
 }
-.agent-card:hover .agent-emoji-box { color: var(--lime); border-color: var(--lime); background: rgba(216,255,58,0.06); }
-.agent-name {
+.cat-card-icon .cat-ic { width: 24px; height: 24px; }
+.cat-card-icon .cat-ic svg { width: 24px; height: 24px; }
+.cat-card-titles { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.cat-card-title {
   font-family: var(--display);
   font-style: italic;
   font-weight: 300;
-  font-size: 30px;
+  font-size: 26px;
   letter-spacing: -0.02em;
   line-height: 1.05;
+  color: var(--fg);
 }
-.agent-role {
-  font-size: 13px;
-  color: var(--fg-dim);
-  line-height: 1.5;
-  margin-top: -6px;
-}
-.agent-cat-tag {
+.cat-card-count {
   font-family: var(--mono);
   font-size: 10px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   color: var(--fg-faint);
-  margin-top: auto;
   text-transform: uppercase;
 }
-.agent-arrow {
-  position: absolute;
-  top: 22px; right: 22px;
-  opacity: 0;
-  transform: translate(-4px, 4px);
-  transition: all .3s ease;
-  color: var(--fg-dim);
-}
 
-/* Agent count counter */
-.agents-meter {
+.cat-agent-list {
+  list-style: none;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 24px;
-  margin-bottom: 32px;
-  background: var(--bg-soft);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--fg-dim);
-  letter-spacing: 0.05em;
+  flex-direction: column;
+  gap: 2px;
 }
-.agents-meter .num { color: var(--lime); }
+.cat-agent {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  border-radius: 12px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: var(--fg);
+  transition: background .2s ease, transform .2s ease;
+}
+.cat-agent:hover { background: rgba(255,255,255,0.04); transform: translateX(3px); }
+.cat-agent-icon {
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  color: var(--fg-dim);
+  flex-shrink: 0;
+  transition: color .2s ease;
+}
+.cat-agent:hover .cat-agent-icon { color: var(--lime); }
+.cat-agent-name {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.cat-agent-arrow {
+  display: inline-flex;
+  align-items: center;
+  opacity: 0;
+  color: var(--fg-faint);
+  transition: opacity .2s ease, color .2s ease, transform .2s ease;
+}
+.cat-agent:hover .cat-agent-arrow { opacity: 1; color: var(--lime); transform: translate(2px, -2px); }
 
 /* Modal */
 .modal-backdrop {

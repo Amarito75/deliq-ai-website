@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Instrument_Serif, Fraunces, JetBrains_Mono } from "next/font/google";
+import {
+  Space_Grotesk,
+  Instrument_Serif,
+  Fraunces,
+  JetBrains_Mono,
+} from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -33,7 +38,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DELIQ.AI — Une équipe IA qui bosse pour vous 24/7",
+  title: "DECLIQ.AI — Une équipe IA qui bosse pour vous 24/7",
   description:
     "24 agents intelligents pour indépendants, TPE et PME françaises. Mails, compta, prospection, SAV, réseaux : ils gèrent le bruit, vous gardez le contrôle.",
 };
@@ -44,13 +49,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
-      <body
-        className={`${spaceGrotesk.variable} ${instrumentSerif.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
-        suppressHydrationWarning
-      >
-        {children}
-      </body>
+    <html
+      lang="fr"
+      className={`${spaceGrotesk.variable} ${instrumentSerif.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
+    >
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
