@@ -47,6 +47,7 @@ export default function RootLayout({
     <html lang="fr">
       <body
         className={`${spaceGrotesk.variable} ${instrumentSerif.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
+        suppressHydrationWarning
       >
         {children}
       </body>

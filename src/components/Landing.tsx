@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useState, useEffect, useMemo } from "react";
-import { Icon } from "./Icons";
+import { Icon, CategoryIcon, AgentIcon } from "./Icons";
 import { AGENTS_DATA, type FlatAgent } from "@/lib/agents";
 
 function Nav() {
@@ -204,7 +204,7 @@ function AgentsSection({ onSelect }: { onSelect: (a: FlatAgent) => void }) {
           </button>
           {cats.map((c) => (
             <button key={c.cat} className={`filter-chip ${filter === c.cat ? "active" : ""}`} onClick={() => setFilter(c.cat)}>
-              <span>{c.emoji}</span>
+              <CategoryIcon cat={c.cat} />
               {c.label} <span className="count">[{c.agents.length}]</span>
             </button>
           ))}
@@ -212,7 +212,7 @@ function AgentsSection({ onSelect }: { onSelect: (a: FlatAgent) => void }) {
         <div className="agents-grid">
           {filtered.map((a) => (
             <button key={`${a.cat}-${a.name}`} className="agent-card" onClick={() => onSelect(a)} onMouseMove={handleMouseMove}>
-              <div className="agent-emoji-box">{a.emoji}</div>
+              <div className="agent-emoji-box"><AgentIcon name={a.name} /></div>
               <div className="agent-name">{a.name}</div>
               <div className="agent-role">{a.role}</div>
               <div className="agent-cat-tag">[ {a.catLabel} ]</div>
@@ -241,7 +241,7 @@ function AgentModal({ agent, onClose }: { agent: FlatAgent; onClose: () => void 
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}><Icon.Close /></button>
-        <div className="modal-cat">{agent.emoji} {agent.catLabel}</div>
+        <div className="modal-cat"><CategoryIcon cat={agent.cat} /> {agent.catLabel}</div>
         <h3>Agent <span className="ital">{agent.name}</span></h3>
         <p className="modal-role">{agent.role}</p>
         <div className="modal-desc">{agent.desc}</div>
